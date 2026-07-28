@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hypertension Risk Screener &mdash; AfyaTech Analytics</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-shape shape-a"></div>
+  <div class="bg-shape shape-b"></div>
+
+  <header class="page-header">
+    <div class="wrap">
+      <p class="eyebrow">AfyaTech Analytics &middot; Screening Prototype</p>
+      <h1>Hypertension Risk Screener</h1>
+      <p class="lede">
+        Estimate a patient's likelihood of elevated systolic blood pressure
+        (SBP &ge; 120&nbsp;mmHg) from basic, clinic-collectible screening data.
+        Runs entirely in this browser &mdash; the trained model never leaves your device.
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+
+    <section class="card form-card" aria-labelledby="form-title">
+      <h2 id="form-title">Patient Screening Data</h2>
+      <form id="risk-form">
+        <div id="fields-container" class="fields-grid"></div>
+        <div class="form-actions">
+          <button type="submit" id="submit-btn">Estimate Risk</button>
+          <button type="button" id="reset-btn" class="ghost">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card result-card" aria-labelledby="result-title">
+      <h2 id="result-title">Result</h2>
+
+      <div id="result-empty" class="result-empty">
+        <p>Fill in the form and select <strong>Estimate Risk</strong> to see a prediction.</p>
+      </div>
+
+      <div id="result-body" class="result-body" hidden>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 200 110" class="gauge" aria-hidden="true">
+            <path d="M10,100 A90,90 0 0 1 190,100" class="gauge-track"/>
+            <path d="M10,100 A90,90 0 0 1 190,100" class="gauge-fill" id="gauge-fill"/>
+          </svg>
+          <div class="gauge-value">
+            <span id="prob-value">--</span>
+            <span class="gauge-unit">probability</span>
+          </div>
+        </div>
+
+        <p id="risk-label" class="risk-label">--</p>
+
+        <div class="breakdown">
+          <h3>Main contributing factors</h3>
+          <ul id="breakdown-list"></ul>
+        </div>
+      </div>
+
+      <p class="disclaimer">
+        Prototype for a training capstone &mdash; not a certified diagnostic device.
+        Always confirm with an in-clinic blood pressure reading.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <div class="wrap">
+      <p>Model: Logistic Regression &middot; Test ROC-AUC <span id="footer-auc">--</span> &middot; Peace Mutheu's Findings</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
